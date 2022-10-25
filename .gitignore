@@ -1,3 +1,5 @@
 venv
 .DS_Store
 __pycache__
+servier_use_case/logs
+servier_use_case/plugins
