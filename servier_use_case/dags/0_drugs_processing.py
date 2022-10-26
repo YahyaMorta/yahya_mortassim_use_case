@@ -55,7 +55,7 @@ def get_journals(drug, **kwargs):
 
 def create_json_file():
     """Creates the output json file with a timestamp to avoid overriding the same file"""
-    output_file_name = f"{PATH}output_files/drugs_file_{datetime.utcnow().timestamp()}.ndjson"
+    output_file_name = f"{PATH}output_files/drugs_file_{datetime.utcnow().timestamp()}.json"
     open(output_file_name, "w")
     return output_file_name
 
