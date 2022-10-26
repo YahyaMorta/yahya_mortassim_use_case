@@ -25,7 +25,7 @@ alias python='/usr/local/bin/python3'
 ```
 
 - #### How to Setup the env 
-In order to setup your dev environment, launch the following commands in the servier_use_case directory:
+In order to setup your dev environment, launch the following commands in the yahya_mortassim_use_case directory:
 
 ```bash
 python -m venv venv  # only the first time
