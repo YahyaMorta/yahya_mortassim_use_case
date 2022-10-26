@@ -43,3 +43,13 @@ Then go to `http://localhost:8080`
 On the Airflow Web UI, the username is `airflow` and the password is `airflow`
 
 Trigger the dag by pressing the play button.
+
+- #### Thoughts about the test
+
+- The simplest and most efficient way to deploy this dag is on Google Cloud Composer (no need for the docker-compose)
+
+- In a production version, the python code should be executed on a serverless GCP service like Google Cloud Run or Cloud Functions.
+
+- If possible, pandas should not be used in production.
+
+- Another alternative for Airflow in this case would be Google Dataflow (Apache Beam)
