@@ -1,9 +1,9 @@
 ### Introduction
 
-This repo contains an Airflow DAG that outputs a (New Line Delimited Json file)[http://ndjson.org/].
+This repo contains an Airflow DAG that outputs a [New Line Delimited Json file](http://ndjson.org/).
 An output file example is located in the output_files directory.
 
-In this example, we use docker-compose to set up airflow. Install (Docker Desktop)[https://www.docker.com/products/docker-desktop/].
+In this example, we use docker-compose to set up airflow. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 Airflow LocalExecutor is used for running tasks.
 
