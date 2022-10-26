@@ -1,8 +1,17 @@
+### Introduction
+
+This repo contains an Airflow DAG that outputs a (New Line Delimited Json file)[http://ndjson.org/].
+An output file example is located in the output_files directory.
+
+In this example, we use docker-compose to set up airflow. Install (Docker Desktop)[https://www.docker.com/products/docker-desktop/].
+
+Airflow LocalExecutor is used for running tasks.
+
 ### Setup
 
 - #### How to install Python
 
-🚨 This setup works with Python 3.7.15
+This setup works with Python 3.7
 
 check your python3 version
 ```bash 
@@ -16,7 +25,7 @@ alias python='/usr/local/bin/python3'
 ```
 
 - #### How to Setup the env 
-In order to setup your dev environment, launch the following commands in the root directory:
+In order to setup your dev environment, launch the following commands in the servier_use_case directory:
 
 ```bash
 python -m venv venv  # only the first time
@@ -25,3 +34,12 @@ source venv/bin/activate  # every time you start working on the project
 pip install --upgrade pip # the first time and every time a dependency changes
 pip install -r requirements-tests.txt  # the first time and every time a dependency changes
 pip install -e .  # only the first time
+
+- #### How to Launch the DAG
+
+Once Docker Desktop is installed, run `docker compose up -d`
+Then go to `http://localhost:8080`
+
+On the Airflow Web UI, the username is `airflow` and the password is `airflow`
+
+Trigger the dag by pressing the play button.
