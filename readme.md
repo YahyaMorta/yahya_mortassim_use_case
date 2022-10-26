@@ -44,12 +44,91 @@ On the Airflow Web UI, the username is `airflow` and the password is `airflow`
 
 Trigger the dag by pressing the play button.
 
-- #### Thoughts about the test
+### Thoughts about the test
 
 - The simplest and most efficient way to deploy this dag is on Google Cloud Composer (no need for the docker-compose)
 
 - In a production version, the python code should be executed on a serverless GCP service like Google Cloud Run or Cloud Functions.
 
+- Tests should be added...
+
 - If possible, pandas should not be used in production.
 
 - Another alternative for Airflow in this case would be Google Dataflow (Apache Beam)
+
+### SQL
+
+I used bigquery standard sql
+
+Première partie:
+
+````
+SELECT
+  date,
+  SUM(prod_price*prod_qty) AS ventes
+FROM
+  `project.dataset.TRANSACTION`
+where date between date(2019,1,1) and date(2019,1,31)
+GROUP BY
+  1
+ORDER BY
+  2
+````
+
+Deuxième partie:
+
+````
+WITH
+  client_product_ventes AS (
+  SELECT
+    client_id,
+    prop_id,
+    SUM(prod_price*prod_qty) AS ventes
+  FROM
+    `project.dataset.TRANSACTION`
+  where date between date(2019,1,1) and date(2019,1,31)
+  GROUP BY
+    1,
+    2),
+  ventes_client_product_type AS (
+  SELECT
+    client_id,
+    product_type,
+    ventes
+  FROM
+    client_product_ventes A
+  LEFT JOIN
+    `project.dataset.PRODUCT_NOMENCLATURE` B
+  ON
+    A.prop_id = B.product_id),
+  ventes_meuble AS (
+  SELECT
+    client_id,
+    SUM(ventes) AS ventes_meuble
+  FROM
+    ventes_client_product_type
+  WHERE
+    product_type='MEUBLE'
+  GROUP BY
+    1),
+  ventes_deco AS (
+  SELECT
+    client_id,
+    SUM(ventes) AS ventes_deco
+  FROM
+    ventes_client_product_type
+  WHERE
+    product_type='DECO'
+  GROUP BY
+    1)
+SELECT
+  C.client_id,
+  ventes_meuble,
+  ventes_deco
+FROM
+  ventes_meuble C
+JOIN
+  ventes_deco D
+ON
+  C.client_id = D.client_id
+```
