@@ -1,11 +1,11 @@
-from airflow import DAG
-from airflow.operators.empty import EmptyOperator
-from airflow.operators.bash import BashOperator
-from airflow.operators.python import PythonOperator
-import pandas as pd
 from collections import defaultdict
 from datetime import datetime
 import json
+from airflow import DAG
+from airflow.operators.empty import EmptyOperator
+from airflow.operators.python import PythonOperator
+import pandas as pd
+
 
 PATH = "/opt/airflow/dags/"
 drugs_df = pd.read_csv(f"{PATH}input_files/drugs.csv")
