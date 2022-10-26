@@ -16,12 +16,14 @@ trials_df = pd.read_csv(f"{PATH}input_files/clinical_trials.csv")
 
 
 def is_drug_in_pub(drug, df, col):
+    """Filters the drugs dataset for one drug"""
+
     res = df[df[col].str.contains(drug, case=False)]
     return res
 
 
 def group_by_journal(df, title_col, mention_type):
-
+    """Groups by journal name and formats the result into a list of dicts"""
     pub_dict = (
         df.groupby('journal')
         .apply(lambda x: [{f'{mention_type}_title': i, 'date': j} for i, j in zip(x[title_col], x['date'])])
@@ -32,6 +34,7 @@ def group_by_journal(df, title_col, mention_type):
 
 
 def get_journals(drug, **kwargs):
+    """merges the results of processing pubmeds and clinical trials"""
     ti = kwargs['ti']
     df_pubs, df_trials = ti.xcom_pull(
         key=None, task_ids=[f"looking_for_{drug}_in_pubs", f"looking_for_{drug}_in_trials"]
@@ -51,12 +54,14 @@ def get_journals(drug, **kwargs):
 
 
 def create_json_file():
+    """Creates the output json file with a timestamp to avoid overriding the same file"""
     output_file_name = f"{PATH}output_files/drugs_file_{datetime.utcnow().timestamp()}.ndjson"
     open(output_file_name, "w")
     return output_file_name
 
 
 def write_to_json(drug, **kwargs):
+    """Writes the result in the new line delimited JSON file"""
     ti = kwargs['ti']
     list_of_journals = ti.xcom_pull(key=None, task_ids=f"looking_for_journals_of_{drug}")
     output_file_name = ti.xcom_pull(key=None, task_ids="creating_json_file")
