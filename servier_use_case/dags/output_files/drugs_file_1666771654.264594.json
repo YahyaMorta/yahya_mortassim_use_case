@@ -1,0 +1,154 @@
+{
+    "drug": "DIPHENHYDRAMINE",
+    "journals": [
+        {
+            "name": "Journal of emergency nursing",
+            "mentions": [
+                [
+                    {
+                        "pubmed_title": "A 44-year-old man with erythema of the face diphenhydramine, neck, and chest, weakness, and palpitations",
+                        "date": "01/01/2019"
+                    },
+                    {
+                        "pubmed_title": "An evaluation of benadryl, pyribenzamine, and other so-called diphenhydramine antihistaminic drugs in the treatment of allergy.",
+                        "date": "01/01/2019"
+                    }
+                ],
+                [
+                    {
+                        "trial_title": "Use of Diphenhydramine as an Adjunctive Sedative for Colonoscopy in Patients Chronically on Opioids",
+                        "date": "1 January 2020"
+                    },
+                    {
+                        "trial_title": "Phase 2 Study IV QUZYTTIR\u2122 (Cetirizine Hydrochloride Injection) vs V Diphenhydramine",
+                        "date": "1 January 2020"
+                    },
+                    {
+                        "trial_title": "Feasibility of a Randomized Controlled Clinical Trial Comparing the Use of Cetirizine to Replace Diphenhydramine in the Prevention of Reactions Related to Paclitaxel",
+                        "date": "1 January 2020"
+                    }
+                ]
+            ]
+        },
+        {
+            "name": "The Journal of pediatrics",
+            "mentions": [
+                [
+                    {
+                        "pubmed_title": "Diphenhydramine hydrochloride helps symptoms of ciguatera fish poisoning.",
+                        "date": "02/01/2019"
+                    }
+                ]
+            ]
+        }
+    ]
+}
+{
+    "drug": "ATROPINE",
+    "journals": []
+}
+{
+    "drug": "EPINEPHRINE",
+    "journals": [
+        {
+            "name": "The journal of allergy and clinical immunology. In practice",
+            "mentions": [
+                [
+                    {
+                        "pubmed_title": "The High Cost of Epinephrine Autoinjectors and Possible Alternatives.",
+                        "date": "01/02/2020"
+                    },
+                    {
+                        "pubmed_title": "Time to epinephrine treatment is associated with the risk of mortality in children who achieve sustained ROSC after traumatic out-of-hospital cardiac arrest.",
+                        "date": "01/03/2020"
+                    }
+                ]
+            ]
+        },
+        {
+            "name": "Journal of emergency nursing\\xc3\\x28",
+            "mentions": [
+                [
+                    {
+                        "trial_title": "Tranexamic Acid Versus Epinephrine During Exploratory Tympanotomy",
+                        "date": "27 April 2020"
+                    }
+                ]
+            ]
+        }
+    ]
+}
+{
+    "drug": "ISOPRENALINE",
+    "journals": []
+}
+{
+    "drug": "TETRACYCLINE",
+    "journals": [
+        {
+            "name": "American journal of veterinary research",
+            "mentions": [
+                [
+                    {
+                        "pubmed_title": "Appositional Tetracycline bone formation rates in the Beagle.",
+                        "date": "02/01/2020"
+                    }
+                ]
+            ]
+        },
+        {
+            "name": "Journal of food protection",
+            "mentions": [
+                [
+                    {
+                        "pubmed_title": "Tetracycline Resistance Patterns of Lactobacillus buchneri Group Strains.",
+                        "date": "01/01/2020"
+                    }
+                ]
+            ]
+        },
+        {
+            "name": "Psychopharmacology",
+            "mentions": [
+                [
+                    {
+                        "pubmed_title": "Rapid reacquisition of contextual fear following extinction in mice: effects of amount of extinction, tetracycline acute ethanol withdrawal, and ethanol intoxication.",
+                        "date": "2020-01-01"
+                    }
+                ]
+            ]
+        }
+    ]
+}
+{
+    "drug": "BETAMETHASONE",
+    "journals": [
+        {
+            "name": "H\u00f4pitaux Universitaires de Gen\u00e8ve",
+            "mentions": [
+                [
+                    {
+                        "trial_title": "Preemptive Infiltration With Betamethasone and Ropivacaine for Postoperative Pain in Laminoplasty or \\xc3\\xb1 Laminectomy",
+                        "date": "1 January 2020"
+                    }
+                ]
+            ]
+        }
+    ]
+}
+{
+    "drug": "ETHANOL",
+    "journals": [
+        {
+            "name": "Psychopharmacology",
+            "mentions": [
+                [
+                    {
+                        "pubmed_title": "Rapid reacquisition of contextual fear following extinction in mice: effects of amount of extinction, tetracycline acute ethanol withdrawal, and ethanol intoxication.",
+                        "date": "2020-01-01"
+                    }
+                ]
+            ]
+        }
+    ]
+}
