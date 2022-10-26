@@ -34,7 +34,7 @@ source venv/bin/activate  # every time you start working on the project
 pip install --upgrade pip # the first time and every time a dependency changes
 pip install -r requirements-tests.txt  # the first time and every time a dependency changes
 pip install -e .  # only the first time
-
+```
 - #### How to Launch the DAG
 
 Once Docker Desktop is installed, run `docker compose up -d`
