@@ -52,6 +52,8 @@ Run `pytest` to run tests
 
 - The simplest and most efficient way to deploy this dag is on Google Cloud Composer (no need for the docker-compose)
 
+- Reading large csv files should not be done outside the Airflow execution context. Instead, these files should be placed in a file storage service like Google Cloud Storage and read using [Google Cloud Storage Operator](https://airflow.apache.org/docs/apache-airflow-providers-google/stable/_api/airflow/providers/google/cloud/operators/gcs/index.html)
+
 - In a production version, the python code should be executed on a serverless GCP service like Google Cloud Run or Cloud Functions.
 
 - Another alternative for Airflow in this case would be Google Dataflow (Apache Beam)
