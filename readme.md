@@ -5,7 +5,7 @@ An output file example is located in the output_files directory.
 
 In this example, we use docker-compose to set up airflow. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
-Airflow LocalExecutor is used for running tasks.
+Airflow CeleryExecutor is used for running tasks.
 
 ### Setup
 
@@ -25,7 +25,7 @@ alias python='/usr/local/bin/python3'
 ```
 
 - #### How to Setup the env 
-In order to setup your dev environment, launch the following commands in the yahya_mortassim_use_case directory:
+In order to setup your dev environment, launch the following commands in the servier_use_case directory:
 
 ```bash
 python -m venv venv  # only the first time
@@ -37,22 +37,22 @@ pip install -e .  # only the first time
 ```
 - #### How to Launch the DAG
 
-Once Docker Desktop is installed, run `docker compose up -d` in servier_use_case directory
+Once Docker Desktop is installed, run `docker compose build` then `docker compose up -d` in servier_use_case directory
 Then go to `http://localhost:8080`
 
 On the Airflow Web UI, the username is `airflow` and the password is `airflow`
 
 Trigger the dag by pressing the play button.
 
+- #### Run Tests
+
+Run `pytest` to run tests
+
 ### Thoughts about the test
 
 - The simplest and most efficient way to deploy this dag is on Google Cloud Composer (no need for the docker-compose)
 
 - In a production version, the python code should be executed on a serverless GCP service like Google Cloud Run or Cloud Functions.
-
-- Tests should be added...
-
-- If possible, pandas should not be used in production.
 
 - Another alternative for Airflow in this case would be Google Dataflow (Apache Beam)
 
