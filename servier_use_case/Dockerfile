@@ -1,3 +1,3 @@
 FROM apache/airflow:2.4.2
-COPY requirements.txt /
-RUN pip install --no-cache-dir -r /requirements.txt
+COPY setup.cfg setup.py pyproject.toml requirements.txt .
+RUN pip install --no-cache-dir -e .

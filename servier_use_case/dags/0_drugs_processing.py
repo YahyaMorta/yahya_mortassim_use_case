@@ -5,7 +5,7 @@ from airflow import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.python import PythonOperator
 import pandas as pd
-
+from dags.helper import is_drug_in_pub
 
 PATH = "/opt/airflow/dags/"
 drugs_df = pd.read_csv(f"{PATH}input_files/drugs.csv")
@@ -14,12 +14,6 @@ pubs_df = pd.read_csv(f"{PATH}input_files/pubmed.csv")
 
 trials_df = pd.read_csv(f"{PATH}input_files/clinical_trials.csv")
 
-
-def is_drug_in_pub(drug, df, col):
-    """Filters the drugs dataset for one drug"""
-
-    res = df[df[col].str.contains(drug, case=False)]
-    return res
 
 
 def group_by_journal(df, title_col, mention_type):
