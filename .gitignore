@@ -4,3 +4,5 @@ __pycache__
 servier_use_case/logs
 servier_use_case/plugins
 .vscode
+.eggs
+.pytest_cache

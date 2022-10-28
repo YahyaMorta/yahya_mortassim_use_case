@@ -1,67 +1,17 @@
-from collections import defaultdict
 from datetime import datetime
-import json
 from airflow import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.python import PythonOperator
 import pandas as pd
-from dags.helper import is_drug_in_pub
-
-PATH = "/opt/airflow/dags/"
-drugs_df = pd.read_csv(f"{PATH}input_files/drugs.csv")
-
-pubs_df = pd.read_csv(f"{PATH}input_files/pubmed.csv")
-
-trials_df = pd.read_csv(f"{PATH}input_files/clinical_trials.csv")
+from dags import constants
+from dags.process import read_csv, is_drug_in_pub, group_by_journal, get_journals, create_json_file, write_to_json
 
 
+drugs_df = read_csv(f"{constants.PATH}input_files/drugs.csv")
 
-def group_by_journal(df, title_col, mention_type):
-    """Groups by journal name and formats the result into a list of dicts"""
-    pub_dict = (
-        df.groupby('journal')
-        .apply(lambda x: [{f'{mention_type}_title': i, 'date': j} for i, j in zip(x[title_col], x['date'])])
-        .to_dict()
-    )
-    pubs_journals = [{"name": k, "mentions": v} for k, v in pub_dict.items() if v]
-    return pubs_journals
+pubs_df = read_csv(f"{constants.PATH}input_files/pubmed.csv")
 
-
-def get_journals(drug, **kwargs):
-    """merges the results of processing pubmeds and clinical trials"""
-    ti = kwargs['ti']
-    df_pubs, df_trials = ti.xcom_pull(
-        key=None, task_ids=[f"looking_for_{drug}_in_pubs", f"looking_for_{drug}_in_trials"]
-    )
-
-    pubs_journals = group_by_journal(df_pubs, 'title', 'pubmed')
-    trials_journals = group_by_journal(df_trials, 'scientific_title', 'trial')
-
-    merged_lists = pubs_journals + trials_journals
-
-    tmp = defaultdict(list)
-    for item in merged_lists:
-        tmp[item['name']].append(item['mentions'])
-    parsed_list = [{'name': k, 'mentions': v} for k, v in tmp.items()]
-
-    return parsed_list
-
-
-def create_json_file():
-    """Creates the output json file with a timestamp to avoid overriding the same file"""
-    output_file_name = f"{PATH}output_files/drugs_file_{datetime.utcnow().timestamp()}.json"
-    open(output_file_name, "w")
-    return output_file_name
-
-
-def write_to_json(drug, **kwargs):
-    """Writes the result in the new line delimited JSON file"""
-    ti = kwargs['ti']
-    list_of_journals = ti.xcom_pull(key=None, task_ids=f"looking_for_journals_of_{drug}")
-    output_file_name = ti.xcom_pull(key=None, task_ids="creating_json_file")
-    with open(output_file_name, "a") as f:
-        json.dump({"drug": drug, "journals": list_of_journals}, f)
-        f.write('\n')
+trials_df = read_csv(f"{constants.PATH}input_files/clinical_trials.csv")
 
 
 with DAG(dag_id='servier_use_case_dag', start_date=datetime(2022, 10, 25), schedule_interval=None) as dag:
