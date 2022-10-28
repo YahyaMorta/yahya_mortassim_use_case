@@ -37,7 +37,7 @@ pip install -e .  # only the first time
 ```
 - #### How to Launch the DAG
 
-Once Docker Desktop is installed, run `docker compose build` then `docker compose up -d` in servier_use_case directory
+Once Docker Desktop is installed, run `docker-compose build` then `docker-compose up -d` in servier_use_case directory
 Then go to `http://localhost:8080`
 
 On the Airflow Web UI, the username is `airflow` and the password is `airflow`
