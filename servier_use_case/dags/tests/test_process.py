@@ -1,4 +1,3 @@
-import pandas as pd
 from io import StringIO
 
 from dags.process import read_csv, is_drug_in_pub, group_by_journal

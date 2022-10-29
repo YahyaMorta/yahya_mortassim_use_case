@@ -2,7 +2,6 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.python import PythonOperator
-import pandas as pd
 from dags import constants
 from dags.process import (
     read_csv,
