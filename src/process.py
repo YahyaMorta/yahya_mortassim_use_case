@@ -17,7 +17,7 @@ from .helpers import (
 @task
 def read_files() -> Dict[str, str]:
     """
-    Read source CSVs and return compact JSON strings (good for XCom).
+    Read source CSVs and return compact JSON strings
     """
     drugs_fp = Variable.get("drugs_file_path", "/opt/airflow/dags/input_files/drugs.csv")
     pub_fp = Variable.get("pubmed_file_path", "/opt/airflow/dags/input_files/pubmed.csv")
