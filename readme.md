@@ -5,7 +5,7 @@ Ce projet contient un DAG [Apache Airflow](https://airflow.apache.org/) qui trai
 - les **publications médicales** (`pubmed.csv`),  
 - les **essais cliniques** (`clinical_trials.csv`).  
 
-Le pipeline génère un fichier JSON (au format **JSON Lines**, un objet par ligne) qui relie chaque médicament aux publications et aux essais cliniques dans lesquels il est mentionné, organisés **par revue scientifique**.
+Le pipeline génère un fichier JSON (au format **JSON Lines**, un objet par ligne) qui relie chaque médicament aux publications et aux essais cliniques dans lesquels il est mentionné, organisés **par journal**.
 
 ---
 
