@@ -13,9 +13,9 @@ Le pipeline génère un fichier JSON (au format **JSON Lines**, un objet par lig
 
 Nous avons choisi de **grouper les mentions par journal**.  
 Cela permet :  
-- de mieux comprendre dans quelles revues scientifiques un médicament est discuté,  
-- de distinguer les mentions provenant de **PubMed** et celles issues des **essais cliniques**,  
-- de faciliter les analyses par revue (impact, nombre de mentions, etc.).  
+- de mieux comprendre dans quelles revues scientifiques un médicament est discuté
+- de distinguer les mentions provenant de **PubMed** et celles issues des **essais cliniques**
+- de faciliter les analyses par revue (impact, nombre de mentions, etc.)
 
 Chaque journal contient donc deux sous-listes :  
 1. les mentions issues de **PubMed**  
@@ -33,7 +33,8 @@ Seules les listes non vides sont conservées, pour éviter des structures inutil
 - `src/` : Logique de traitement des données (tâches et helpers).  
 - `tests/` : Tests unitaires.  
 - `docker-compose.yaml` : Définition des services Airflow (webserver, scheduler, base de données).  
-- `.env` : Variables d’environnement pour Docker.  
+- `.env` : Variables d’environnement pour Docker.
+- `src/adhoc.py` : La solution à la question du traitement ad-hoc.
 
 ---
 
