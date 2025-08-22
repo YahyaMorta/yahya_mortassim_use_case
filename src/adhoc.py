@@ -8,7 +8,7 @@ def journal_with_most_distinct_drugs(jsonl_path: str) -> str:
     """
     Parcourt le JSONL du pipeline et renvoie le NOM DU JOURNAL
     qui mentionne le plus de médicaments.
-    Règle d'égalité : on choisit le nom alphabétiquement premier.
+    En cas d'égalité, on choisit le nom alphabétiquement premier.
     """
     journal_to_drugs: Dict[str, Set[str]] = defaultdict(set)
 
@@ -22,7 +22,7 @@ def journal_with_most_distinct_drugs(jsonl_path: str) -> str:
             except json.JSONDecodeError:
                 continue
 
-            drug = (obj.get("drug") or "").strip()
+            drug = (obj.get("drug","") or "").strip()
             if not drug:
                 continue
 
@@ -30,8 +30,6 @@ def journal_with_most_distinct_drugs(jsonl_path: str) -> str:
                 name = j.get("name")
                 if not name:
                     continue
-                # on compte le médicament pour ce journal s'il existe au moins
-                # une sous-liste de mentions non vide (pubmed ou trials)
                 mentions = j.get("mentions") or []
                 if any(isinstance(lst, list) and len(lst) > 0 for lst in mentions):
                     journal_to_drugs[name].add(drug)
@@ -39,11 +37,8 @@ def journal_with_most_distinct_drugs(jsonl_path: str) -> str:
     if not journal_to_drugs:
         return ""
 
-    # max par nb de médicaments DISTINCTS, puis ordre alphabétique
-    return min(
-        journal_to_drugs.items(),
-        key=lambda kv: (-len(kv[1]), kv[0])
-    )[0]
+    # max par nb de médicaments distincts, puis ordre alphabétique
+    return max(journal_to_drugs.items(), key=lambda kv: len(kv[1]))[0]
 
 
 if __name__ == "__main__":
@@ -51,6 +46,5 @@ if __name__ == "__main__":
         print("Usage: python -m src.adhoc <chemin_vers_output_jsonl>", file=sys.stderr)
         sys.exit(2)
     name = journal_with_most_distinct_drugs(sys.argv[1])
-    # On imprime UNIQUEMENT le nom, comme demandé
+    # On imprime le nom du journal
     print(name)
-    # Si vide, le shell verra une ligne vide (pas d’exception)
