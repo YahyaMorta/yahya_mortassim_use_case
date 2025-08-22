@@ -128,6 +128,8 @@ Un extrait du fichier JSONL produit :
 - **Stockage :** remplacer le stockage local par Google Cloud Storage.  
 - **CI/CD :** ajouter un pipeline CI/CD pour automatiser tests et déploiement.  
 
+---
+
 ## Traitement Ad-hoc:
 Pour lancer le traiement adhoc qui permet d'obtenir le Journal qui mentionne le plus de médicametns:
 ```bash
