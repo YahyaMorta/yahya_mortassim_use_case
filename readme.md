@@ -47,7 +47,7 @@ Seules les listes non vides sont conservées, pour éviter des structures inutil
 
 1. **Cloner le dépôt :**
    ```bash
-   git clone https://github.com/votre-nom-d-utilisateur/yahya_mortassim_use_case.git
+   git clone https://github.com/YahyaMorta/yahya_mortassim_use_case
    cd yahya_mortassim_use_case
    ```
 
